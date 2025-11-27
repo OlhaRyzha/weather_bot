@@ -1,0 +1,26 @@
+{
+"message_id":198,
+"date":1763050796,
+"chat":
+  {
+  "id":704054732,
+  "type":"private",
+  "username":"olharyzha",
+  "first_name":"Ольга",
+  "last_name":"Рижа"
+  },
+  "from_user":
+    {
+    "id":704054732,
+    "is_bot":false,
+    "first_name":"Ольга",
+    "last_name":"Рижа",
+    "username":"olharyzha",
+    "language_code":"uk"},
+    "location":
+     {
+      "latitude":50.405308,
+      "longitude":30.61988
+      }
+}
+
