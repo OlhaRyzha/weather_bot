@@ -137,6 +137,12 @@ class FakeShortcuts:
     home = HOME_KYIV
     work = WORK_LVIV
 
+    def __iter__(self):
+        return iter(self.shortcuts)
+
+    def __len__(self):
+        return len(self.shortcuts)
+
     @property
     def shortcuts(self):
         return [self.home, self.work]
