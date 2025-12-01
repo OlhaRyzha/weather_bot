@@ -3,6 +3,7 @@ import pytest
 from bot.dialog_states import WeatherStates
 from bot.routers.weather_router import shortcuts as shortcuts_router
 from bot.reply_keyboards.main_menu_keyboard import MAIN_BTN_LOCATION
+from tests.fakes import HOME_KYIV, WORK_LVIV
 
 
 @pytest.mark.anyio("asyncio")
@@ -62,7 +63,7 @@ async def test_process_shortcut_command_detects_duplicates(
     message = fake_message_factory(text="home")
 
     async def fake_list(user_id):
-        return [("home", "kyiv")]
+        return [HOME_KYIV]
 
     monkeypatch.setattr(shortcuts_router.shortcuts_storage, "list", fake_list)
 
@@ -94,7 +95,7 @@ async def test_add_shortcut_city_saves_and_updates_keyboard(
 
     await shortcuts_router.add_shortcut_city(message, fake_state)
 
-    assert shortcuts == [("home", "kyiv")]
+    assert shortcuts == [HOME_KYIV]
     assert message.answers[0]["reply_markup"]["commands"] == ["home"]
     assert fake_state.state is None
     assert fake_state.data == {}
@@ -128,7 +129,7 @@ async def test_show_shortcuts_lists_existing(
     message = fake_message_factory()
 
     async def fake_list(user_id):
-        return [("home", "kyiv"), ("work", "lviv")]
+        return [HOME_KYIV, WORK_LVIV]
 
     monkeypatch.setattr(shortcuts_router.shortcuts_storage, "list", fake_list)
     monkeypatch.setattr(
@@ -169,7 +170,7 @@ async def test_handle_shortcut_or_fallback_matches_command(
     message = fake_message_factory(text="Home")
 
     async def fake_list(user_id):
-        return [("home", "kyiv")]
+        return [HOME_KYIV]
 
     monkeypatch.setattr(shortcuts_router.shortcuts_storage, "list", fake_list)
     monkeypatch.setattr(

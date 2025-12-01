@@ -1,19 +1,17 @@
 import importlib
 import pytest
+import config.settings as settings_module
 
 
 @pytest.fixture(autouse=True)
 def reset_settings():
     yield
-    import config.settings as settings_module
-
     importlib.reload(settings_module)
 
 
 def _reload_settings(monkeypatch, **env_values):
     for key, value in env_values.items():
         monkeypatch.setenv(key, value)
-    import config.settings as settings_module
 
     return importlib.reload(settings_module)
 
