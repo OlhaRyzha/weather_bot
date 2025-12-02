@@ -41,7 +41,7 @@ async def test_get_payload_assembles_model_request(monkeypatch, fake_message_fac
         user_data={"locale": "ua"},
     )
 
-    assert payload["model"] == "llama-3.1-70b-versatile"
+    assert payload["model"] == "llama-3.3-70b-versatile"
     assert payload["stream"] is False
 
     messages = payload["messages"]

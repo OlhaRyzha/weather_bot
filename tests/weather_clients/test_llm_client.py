@@ -17,6 +17,9 @@ class FakeLLMResponse:
     async def json(self):
         return self._payload
 
+    async def text(self):
+        return str(self._payload)
+
 
 class FakeLLMSession:
     def __init__(self, response, *, raise_error: bool = False):
@@ -32,7 +35,7 @@ class FakeLLMSession:
     async def __aexit__(self, exc_type, exc, tb):
         return False
 
-    def post(self, url, *, json, headers=None):
+    def post(self, url, *, json, headers=None, **kwargs):
         self.requests.append((url, json, headers))
         if self._raise_error:
             raise aiohttp.ClientError("boom")
