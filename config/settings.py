@@ -18,6 +18,7 @@ WEATHER_API_TOKEN = os.getenv("WEATHER_API_TOKEN") or ""
 WEATHER_API_BASE = os.getenv("WEATHER_API_BASE") or ""
 DEFAULT_UNITS = "metric"
 LLM_URL = os.getenv("LLM_API_URL") or ""
+LLM_API_TOKEN = os.getenv("LLM_API_KEY") or ""
 LLM_SYSTEM_INSTRUCTION_TEMPLATE = """
 You are a friendly companion assistant for a weather Telegram bot.
 

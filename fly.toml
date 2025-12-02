@@ -1,4 +1,4 @@
-app = "weather-bot"
+app = "weather-bot-olha"
 primary_region = "ams"
 
 [build]

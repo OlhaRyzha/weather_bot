@@ -20,7 +20,7 @@ def test_build_prompt_normalizes_description_and_embeds_context():
 
     assert prompt.startswith("SYS")
     assert "City: Kyiv" in prompt
-    assert "light rain" in prompt  # normalized description
+    assert "light rain" in prompt
     assert "Temperature (C, for your understanding only): 9" in prompt
     assert "{'units': 'metric'}" in prompt
 
@@ -41,10 +41,21 @@ async def test_get_payload_assembles_model_request(monkeypatch, fake_message_fac
         user_data={"locale": "ua"},
     )
 
-    assert payload["model"] == "llama3.2:3b"
+    assert payload["model"] == "llama-3.1-70b-versatile"
     assert payload["stream"] is False
-    prompt = payload["prompt"]
-    assert "Captain Jane" in prompt
-    assert "City: Lviv" in prompt
-    assert "foggy" in prompt
-    assert "{'locale': 'ua'}" in prompt
+
+    messages = payload["messages"]
+    assert isinstance(messages, list)
+    assert len(messages) == 2
+
+    system_msg = messages[0]
+    user_msg = messages[1]
+
+    assert system_msg["role"] == "system"
+    assert user_msg["role"] == "user"
+
+    content = user_msg["content"]
+    assert "Captain Jane" in content
+    assert "City: Lviv" in content
+    assert "foggy" in content.lower()
+    assert "{'locale': 'ua'}" in content

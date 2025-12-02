@@ -51,7 +51,10 @@ async def get_payload(
     )
 
     return {
-        "model": "llama3.2:3b",
-        "prompt": prompt,
+        "model": "llama-3.1-70b-versatile",
+        "messages": [
+            {"role": "system", "content": system_instruction},
+            {"role": "user", "content": prompt},
+        ],
         "stream": False,
     }
