@@ -1,4 +1,4 @@
-# Weather Bot
+# Weather Bot(@olha_ryzha_weather_bot)
 
 Telegram bot built with Aiogram 3 that shows the current weather, adds a short LLM hint, and lets users save shortcut commands for favorite cities. Works with OpenWeather and supports location sharing or typed city names.
 
