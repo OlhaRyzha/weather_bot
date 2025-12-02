@@ -71,3 +71,5 @@ dmypy.json
 # Jupyter
 .ipynb_checkpoints
 
+.home/
+.tmpfly/
